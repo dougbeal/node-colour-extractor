@@ -11,7 +11,7 @@ exports.topColours = (sourceFilename, sorted, cb) ->
   tmpFilename = temp.path({suffix: '.miff'})
   img.size((err, wh) ->
     console.log err if err
-    
+
     ratio = wh.width/MAX_W
     w2 = wh.width/2
     h2 = wh.height/2
@@ -36,7 +36,7 @@ exports.topColours = (sourceFilename, sorted, cb) ->
           )
 
           miffRS.addListener('close', ->
-            fs.unlink(tmpFilename)
+            fs.unlinkSync(tmpFilename)
 
             histogram_start = histogram.indexOf(MIFF_START) + MIFF_START.length
             colours = reduceSimilar(clean(histogram.slice(histogram_start)
